@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #fdf8f1;
+  --color-sand: #f3e8d8;
+  --color-sage: #8fb59a;
+  --color-sage-dark: #4f7a5c;
+  --color-peach: #f4b393;
+  --color-ink: #3d3a35;
+  --color-muted: #7a746b;
+  --font-display: "Fredoka", system-ui, sans-serif;
+  --font-sans: "Nunito", system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-cream text-ink font-sans antialiased; }
