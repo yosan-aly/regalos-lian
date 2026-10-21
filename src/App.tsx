@@ -9,7 +9,7 @@ import { CategoryNav } from "@/components/CategoryNav";
 import { CategorySection } from "@/components/CategorySection";
 import { CatalogError, CatalogLoading } from "@/components/CatalogStatus";
 import { ReserveDialog } from "@/components/ReserveDialog";
-import { WhatsAppFooter } from "@/components/WhatsAppFooter";
+import { ChangeNotice } from "@/components/ChangeNotice";
 
 export default function App() {
   const { state, retry, refresh, updateGift } = useCatalog();
@@ -33,7 +33,7 @@ export default function App() {
           </>
         )}
 
-        <WhatsAppFooter url={eventInfo.whatsappUrl} />
+        <ChangeNotice />
       </main>
 
       <ReserveDialog

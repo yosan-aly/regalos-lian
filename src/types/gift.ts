@@ -30,5 +30,4 @@ export interface EventInfo {
   dateLabel: string;
   intro: string;
   tagline: string;
-  whatsappUrl?: string;
 }

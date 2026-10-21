@@ -24,7 +24,7 @@ src/
 ├── index.css                # Tailwind + paleta y fuentes (@theme)
 ├── types/gift.ts            # Modelos: Gift, Category, Contribution, EventInfo
 ├── data/
-│   ├── event.ts             # Nombre, fecha, textos, enlace WhatsApp
+│   ├── event.ts             # Nombre, fecha y textos
 │   └── categories.ts        # Las 4 categorías y sus regalos
 ├── lib/gifts.ts             # Lógica: disponible = requerida − seleccionada
 ├── assets/dino-bg.webp      # Fondo acuarela del hero
@@ -37,7 +37,7 @@ src/
     ├── StatusBadge.tsx      # Disponible / No disponible
     ├── QuantityStats.tsx    # Requerida · Seleccionada · Disponible
     ├── ContributionCard.tsx # Tarjeta "Aporte para gastos" (opcional)
-    └── WhatsAppFooter.tsx   # Pie con botón de WhatsApp
+    └── ChangeNotice.tsx     # Aviso final: cambios por WhatsApp (informativo)
 ```
 
 ## Árbol de componentes
@@ -51,7 +51,7 @@ App
 │   │   ├── StatusBadge
 │   │   └── QuantityStats
 │   └── ContributionCard (solo "especiales")
-└── WhatsAppFooter
+└── ChangeNotice
 ```
 
 ## Flujo de datos
@@ -60,7 +60,6 @@ se calcula en `lib/gifts.ts` a partir de `required` y `selected`, así nunca se 
 
 ## Pendientes / siguientes pasos
 1. **URL de la vista previa**: ajustar `og:image` en `index.html` con la URL final de Vercel.
-2. **WhatsApp**: pon el enlace en `data/event.ts` → `whatsappUrl: "https://wa.me/57XXXXXXXXXX?text=..."`.
 3. **Elegir regalo real**: hoy los botones están deshabilitados. Para que los invitados reserven,
    conecta un backend (Supabase, Firebase o tu API) y reemplaza `data/categories.ts`
    por un hook `useGifts()` que lea y actualice `selected`.
