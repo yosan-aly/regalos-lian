@@ -1,19 +1,16 @@
 import type { EventInfo } from "@/types/gift";
-import dinoBg from "@/assets/dino-bg.png";
+import dinoBg from "@/assets/dino-bg.webp";
 
 export function Hero({ info }: { info: EventInfo }) {
   return (
     <header className="relative overflow-hidden">
-      <img src={dinoBg} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover opacity-30" />
-      <div className="relative mx-auto max-w-3xl px-4 py-20 text-center">
-        <span className="inline-block rounded-full bg-sage/20 px-4 py-1 text-sm font-semibold text-sage-dark">
-          {info.dateLabel}
-        </span>
-        <h1 className="mt-4 font-display text-4xl font-semibold sm:text-6xl">
+      <img src={dinoBg} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover object-top" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background" />
+      <div className="relative mx-auto max-w-xl px-6 pt-72 pb-10 text-center sm:pt-96">
+        <p className="text-xs font-bold uppercase tracking-[0.25em] text-gold">{info.dateLabel}</p>
+        <h1 className="mt-3 font-display text-5xl font-semibold leading-tight text-forest">
           Los regalos de {info.babyName}
         </h1>
-        <p className="mt-6 text-lg leading-relaxed text-muted">{info.intro}</p>
-        <p className="mt-4 font-semibold text-sage-dark">{info.tagline}</p>
       </div>
     </header>
   );

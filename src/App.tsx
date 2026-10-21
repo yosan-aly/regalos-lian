@@ -1,23 +1,23 @@
 import { categories } from "@/data/categories";
 import { eventInfo } from "@/data/event";
-import { PrototypeBanner } from "@/components/PrototypeBanner";
 import { Hero } from "@/components/Hero";
+import { IntroCard } from "@/components/IntroCard";
 import { CategoryNav } from "@/components/CategoryNav";
 import { CategorySection } from "@/components/CategorySection";
 import { WhatsAppFooter } from "@/components/WhatsAppFooter";
 
 export default function App() {
   return (
-    <>
-      <PrototypeBanner />
+    <div className="min-h-screen">
       <Hero info={eventInfo} />
-      <CategoryNav categories={categories} />
-      <main className="mx-auto max-w-5xl px-4 pb-16 space-y-16">
+      <main className="mx-auto max-w-xl px-4 pb-16">
+        <IntroCard info={eventInfo} />
+        <CategoryNav categories={categories} />
         {categories.map((c) => (
           <CategorySection key={c.id} category={c} />
         ))}
+        <WhatsAppFooter url={eventInfo.whatsappUrl} />
       </main>
-      <WhatsAppFooter url={eventInfo.whatsappUrl} />
-    </>
+    </div>
   );
 }

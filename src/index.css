@@ -1,16 +1,31 @@
 @import "tailwindcss";
 
+/* Paleta tomada del diseño original en Lovable */
 @theme {
-  --color-cream: #fdf8f1;
-  --color-sand: #f3e8d8;
-  --color-sage: #8fb59a;
-  --color-sage-dark: #4f7a5c;
-  --color-peach: #f4b393;
-  --color-ink: #3d3a35;
-  --color-muted: #7a746b;
-  --font-display: "Fredoka", system-ui, sans-serif;
+  --color-background: oklch(97.5% 0.018 90);
+  --color-foreground: oklch(30% 0.045 150);
+  --color-card: oklch(99.3% 0.01 90);
+  --color-primary: oklch(42% 0.07 150);
+  --color-primary-foreground: oklch(98% 0.015 90);
+  --color-secondary: oklch(90% 0.035 135);
+  --color-muted: oklch(94% 0.025 85);
+  --color-muted-foreground: oklch(50% 0.035 140);
+  --color-accent: oklch(92% 0.04 80);
+  --color-accent-foreground: oklch(38% 0.06 70);
+  --color-border: oklch(88% 0.03 100);
+  --color-gold: oklch(72% 0.11 80);
+  --color-sage: oklch(72% 0.06 140);
+  --color-forest: oklch(38% 0.07 152);
+  --color-cream: oklch(97% 0.025 88);
+  --color-unavailable: oklch(62% 0.02 80);
+  --font-display: "Fraunces", Georgia, serif;
   --font-sans: "Nunito", system-ui, sans-serif;
+  --shadow-soft: 0 10px 30px -14px color-mix(in oklab, var(--color-forest) 35%, transparent);
+}
+
+@layer base {
+  *, ::before, ::after { border-color: var(--color-border); }
 }
 
 html { scroll-behavior: smooth; }
-body { @apply bg-cream text-ink font-sans antialiased; }
+body { @apply bg-background text-foreground font-sans antialiased; }

@@ -6,7 +6,8 @@ Migración del prototipo visual (babyshowerlian.lovable.app) a un proyecto React
 - **React 18 + TypeScript**
 - **Vite 5** (bundler / dev server)
 - **Tailwind CSS v4** (plugin `@tailwindcss/vite`, tema en `src/index.css`)
-- Fuentes: Fredoka (títulos) y Nunito (texto) desde Google Fonts
+- Fuentes: Fraunces (títulos) y Nunito (texto) desde Google Fonts
+- Íconos: lucide-react
 
 ## Arranque
 ```bash
@@ -26,12 +27,12 @@ src/
 │   ├── event.ts             # Nombre, fecha, textos, enlace WhatsApp
 │   └── categories.ts        # Las 4 categorías y sus regalos
 ├── lib/gifts.ts             # Lógica: disponible = requerida − seleccionada
-├── assets/dino-bg.png       # Fondo del hero (reemplazar por el original)
+├── assets/dino-bg.webp      # Fondo acuarela del hero
 └── components/
-    ├── PrototypeBanner.tsx  # Franja "Prototipo visual"
-    ├── Hero.tsx             # Encabezado con fecha, título e intro
+    ├── Hero.tsx             # Fondo, fecha y título
+    ├── IntroCard.tsx        # Tarjeta de bienvenida
     ├── CategoryNav.tsx      # Menú fijo con anclas #ropita, #cuidado…
-    ├── CategorySection.tsx  # Título + grilla de tarjetas por categoría
+    ├── CategorySection.tsx  # Ícono, título y tarjetas de la categoría
     ├── GiftCard.tsx         # Tarjeta de regalo
     ├── StatusBadge.tsx      # Disponible / No disponible
     ├── QuantityStats.tsx    # Requerida · Seleccionada · Disponible
@@ -42,8 +43,8 @@ src/
 ## Árbol de componentes
 ```
 App
-├── PrototypeBanner
 ├── Hero
+├── IntroCard
 ├── CategoryNav
 ├── CategorySection ×4
 │   ├── GiftCard ×n
@@ -58,9 +59,8 @@ Los datos viven en `src/data/` y bajan por props. El estado "Disponible" no se g
 se calcula en `lib/gifts.ts` a partir de `required` y `selected`, así nunca se desincroniza.
 
 ## Pendientes / siguientes pasos
-1. **Imagen del dinosaurio**: descarga el `dino-bg.png` original del sitio y reemplaza `src/assets/dino-bg.png` (el actual es un marcador).
+1. **URL de la vista previa**: ajustar `og:image` en `index.html` con la URL final de Vercel.
 2. **WhatsApp**: pon el enlace en `data/event.ts` → `whatsappUrl: "https://wa.me/57XXXXXXXXXX?text=..."`.
 3. **Elegir regalo real**: hoy los botones están deshabilitados. Para que los invitados reserven,
    conecta un backend (Supabase, Firebase o tu API) y reemplaza `data/categories.ts`
    por un hook `useGifts()` que lea y actualice `selected`.
-4. **Paleta**: los colores en `index.css` son aproximados; ajústalos a los del diseño original.
