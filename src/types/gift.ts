@@ -1,5 +1,3 @@
-export type CategoryId = "ropita" | "cuidado" | "paseo" | "especiales";
-
 export interface Gift {
   id: string;
   name: string;
@@ -19,10 +17,11 @@ export interface Contribution {
 }
 
 export interface Category {
-  id: CategoryId;
+  id: string;
   title: string;
   description: string;
   gifts: Gift[];
+  /** No viene del API: se agrega desde data/contributions.ts */
   contribution?: Contribution;
 }
 

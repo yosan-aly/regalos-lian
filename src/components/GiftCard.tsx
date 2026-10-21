@@ -1,10 +1,17 @@
-import { Gift as GiftIcon } from "lucide-react";
+import { Check, Gift as GiftIcon } from "lucide-react";
 import type { Gift } from "@/types/gift";
 import { availableQty, isAvailable } from "@/lib/gifts";
 import { StatusBadge } from "./StatusBadge";
 import { QuantityStats } from "./QuantityStats";
 
-export function GiftCard({ gift }: { gift: Gift }) {
+interface Props {
+  gift: Gift;
+  /** Unidades que eligió este navegador */
+  mine: number;
+  onChoose: (gift: Gift) => void;
+}
+
+export function GiftCard({ gift, mine, onChoose }: Props) {
   const available = isAvailable(gift);
   return (
     <article className={`rounded-2xl border bg-card p-5 shadow-soft ${available ? "" : "opacity-70"}`}>
@@ -21,13 +28,20 @@ export function GiftCard({ gift }: { gift: Gift }) {
       </div>
       <p className="mt-3 text-sm text-muted-foreground">{gift.description}</p>
       <QuantityStats required={gift.required} selected={gift.selected} available={availableQty(gift)} />
+      {mine > 0 && (
+        <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
+          <Check className="h-4 w-4" aria-hidden />
+          Elegiste {mine > 1 ? `${mine} unidades` : "este regalo"}
+        </p>
+      )}
       <button
         type="button"
-        disabled
-        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-bold text-primary-foreground disabled:opacity-60"
+        disabled={!available}
+        onClick={() => onChoose(gift)}
+        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-bold text-primary-foreground transition hover:brightness-110 disabled:opacity-60 disabled:hover:brightness-100"
       >
         <GiftIcon className="h-4 w-4" aria-hidden />
-        {available ? "Elegir este regalo · próximamente" : "Ya fue elegido"}
+        {available ? "Elegir este regalo" : "Ya fue elegido"}
       </button>
     </article>
   );

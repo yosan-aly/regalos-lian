@@ -1,17 +1,23 @@
-import { Baby, Moon, Shirt, Sparkles, type LucideIcon } from "lucide-react";
-import type { Category, CategoryId } from "@/types/gift";
+import { Baby, Gift as GiftIcon, Moon, Shirt, Sparkles, type LucideIcon } from "lucide-react";
+import type { Category, Gift } from "@/types/gift";
 import { GiftCard } from "./GiftCard";
 import { ContributionCard } from "./ContributionCard";
 
-const icons: Record<CategoryId, LucideIcon> = {
+const icons: Record<string, LucideIcon> = {
   ropita: Shirt,
   cuidado: Moon,
   paseo: Baby,
   especiales: Sparkles,
 };
 
-export function CategorySection({ category }: { category: Category }) {
-  const Icon = icons[category.id];
+interface Props {
+  category: Category;
+  myGifts: Record<string, number>;
+  onChoose: (gift: Gift) => void;
+}
+
+export function CategorySection({ category, myGifts, onChoose }: Props) {
+  const Icon = icons[category.id] ?? GiftIcon;
   return (
     <section id={category.id} className="scroll-mt-20 pt-8">
       <div className="mb-4 flex items-start gap-3">
@@ -25,7 +31,7 @@ export function CategorySection({ category }: { category: Category }) {
       </div>
       <div className="space-y-4">
         {category.gifts.map((g) => (
-          <GiftCard key={g.id} gift={g} />
+          <GiftCard key={g.id} gift={g} mine={myGifts[g.id] ?? 0} onChoose={onChoose} />
         ))}
         {category.contribution && <ContributionCard contribution={category.contribution} />}
       </div>
