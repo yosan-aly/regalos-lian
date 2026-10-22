@@ -6,13 +6,15 @@ import { StepButton } from "./StepButton";
 
 interface Props {
   open: boolean;
+  /** Fecha sugerida para confirmar, ej. "1 de diciembre" */
+  deadline: string;
   /** Confirmación previa de este navegador: precarga el formulario y se actualiza */
   current: AttendanceConfirmation | null;
   onClose: () => void;
   onSaved: (confirmation: AttendanceConfirmation) => void;
 }
 
-export function AttendanceDialog({ open, current, onClose, onSaved }: Props) {
+export function AttendanceDialog({ open, deadline, current, onClose, onSaved }: Props) {
   const ref = useRef<HTMLDialogElement>(null);
   const [name, setName] = useState("");
   const [attendees, setAttendees] = useState(1);
@@ -88,7 +90,9 @@ export function AttendanceDialog({ open, current, onClose, onSaved }: Props) {
           <h2 className="font-display text-2xl font-semibold text-forest">
             {isUpdate ? "Actualizar confirmación" : "Confirmar asistencia"}
           </h2>
-          <p className="mt-1 text-sm text-muted-foreground">Cuéntanos quién viene para preparar todo con cariño.</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Cuéntanos quién viene antes del {deadline} para preparar todo con cariño.
+          </p>
 
           <label htmlFor="attendance-name" className="mt-5 block text-sm font-semibold">
             Tu nombre
@@ -101,7 +105,7 @@ export function AttendanceDialog({ open, current, onClose, onSaved }: Props) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             disabled={saving}
-            placeholder="Ej. Ana María"
+            placeholder="Ej. Sanly Ortiz"
             className="mt-1 w-full rounded-xl border bg-background px-4 py-3 text-base outline-none focus:border-sage focus:ring-2 focus:ring-sage/40 disabled:opacity-60"
           />
 

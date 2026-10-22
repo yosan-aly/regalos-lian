@@ -4,10 +4,12 @@ import type { AttendanceConfirmation } from "@/lib/api";
 interface Props {
   /** Confirmación guardada en este navegador, si la hay */
   confirmed: AttendanceConfirmation | null;
+  /** Fecha sugerida para confirmar, ej. "1 de diciembre" */
+  deadline: string;
   onOpen: () => void;
 }
 
-export function AttendanceSection({ confirmed, onOpen }: Props) {
+export function AttendanceSection({ confirmed, deadline, onOpen }: Props) {
   return (
     <section id="asistencia" className="mt-12 scroll-mt-20 rounded-3xl border bg-card p-6 text-center shadow-soft">
       <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-forest">
@@ -17,9 +19,12 @@ export function AttendanceSection({ confirmed, onOpen }: Props) {
       <p className="mt-1 text-sm text-muted-foreground">
         Confírmanos tu asistencia para preparar todo con mucho cariño.
       </p>
+      <p className="mt-3 inline-block rounded-full bg-gold/15 px-4 py-1 text-xs font-bold uppercase tracking-[0.15em] text-accent-foreground">
+        Confirma antes del {deadline}
+      </p>
 
       {confirmed && (
-        <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
+        <p className="mt-4 flex justify-center items-center gap-1.5 text-sm font-semibold text-forest">
           <Check className="h-4 w-4" aria-hidden />
           Confirmaste como {confirmed.name} · {confirmed.attendees} {confirmed.attendees === 1 ? "persona" : "personas"}
         </p>

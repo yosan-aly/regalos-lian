@@ -39,7 +39,11 @@ export default function App() {
           </>
         )}
 
-        {ATTENDANCE_ENABLED && <AttendanceSection confirmed={confirmation} onOpen={() => setAttendanceOpen(true)} />}
+        {ATTENDANCE_ENABLED && <AttendanceSection
+            confirmed={confirmation}
+            deadline={eventInfo.attendanceDeadline}
+            onOpen={() => setAttendanceOpen(true)}
+          />}
 
         <ChangeNotice whatsappUrl={eventInfo.whatsappUrl} />
       </main>
@@ -57,6 +61,7 @@ export default function App() {
       {ATTENDANCE_ENABLED && (
         <AttendanceDialog
           open={attendanceOpen}
+          deadline={eventInfo.attendanceDeadline}
           current={confirmation}
           onClose={() => setAttendanceOpen(false)}
           onSaved={saveConfirmation}

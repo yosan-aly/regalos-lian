@@ -32,4 +32,6 @@ export interface EventInfo {
   tagline: string;
   /** Enlace wa.me para cambios o cancelaciones */
   whatsappUrl: string;
+  /** Fecha sugerida para confirmar asistencia (solo informativa, ej. "1 de diciembre") */
+  attendanceDeadline: string;
 }

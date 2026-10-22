@@ -7,7 +7,7 @@ import {
 
 export const MIN_NAME_LENGTH = 2;
 export const MAX_NAME_LENGTH = 80;
-export const MAX_ATTENDEES = 10;
+export const MAX_ATTENDEES = 7;
 
 /** Muestra u oculta la sección de confirmación de asistencia. */
 export const ATTENDANCE_ENABLED = import.meta.env.VITE_ATTENDANCE_ENABLED === "true";
