@@ -33,7 +33,7 @@ export default function App() {
           </>
         )}
 
-        <ChangeNotice />
+        <ChangeNotice whatsappUrl={eventInfo.whatsappUrl} />
       </main>
 
       <ReserveDialog

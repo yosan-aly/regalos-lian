@@ -30,4 +30,6 @@ export interface EventInfo {
   dateLabel: string;
   intro: string;
   tagline: string;
+  /** Enlace wa.me para cambios o cancelaciones */
+  whatsappUrl: string;
 }
