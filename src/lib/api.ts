@@ -58,3 +58,31 @@ export function reserveGift(giftId: string, quantity: number): Promise<Reservati
     body: JSON.stringify({ quantity }),
   });
 }
+
+/** Confirmación de asistencia guardada en el backend. */
+export interface AttendanceConfirmation {
+  id: string;
+  name: string;
+  /** Total de personas que asistirán, incluyendo a quien confirma */
+  attendees: number;
+}
+
+export function createAttendanceConfirmation(name: string, attendees: number): Promise<AttendanceConfirmation> {
+  return request<AttendanceConfirmation>("/attendance-confirmations", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, attendees }),
+  });
+}
+
+export function updateAttendanceConfirmation(
+  id: string,
+  name: string,
+  attendees: number,
+): Promise<AttendanceConfirmation> {
+  return request<AttendanceConfirmation>(`/attendance-confirmations/${encodeURIComponent(id)}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, attendees }),
+  });
+}

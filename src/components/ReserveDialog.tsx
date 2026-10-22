@@ -3,6 +3,7 @@ import { Gift as GiftIcon, Heart, Minus, Plus } from "lucide-react";
 import type { Gift } from "@/types/gift";
 import { ApiError, reserveGift, type ReservationResult } from "@/lib/api";
 import { availableQty } from "@/lib/gifts";
+import { StepButton } from "./StepButton";
 
 const MAX_PER_RESERVATION = 20;
 
@@ -138,29 +139,5 @@ export function ReserveDialog({ gift, onClose, onReserved, onConflict }: Props) 
         </div>
       ) : null}
     </dialog>
-  );
-}
-
-function StepButton({
-  label,
-  disabled,
-  onClick,
-  children,
-}: {
-  label: string;
-  disabled: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      disabled={disabled}
-      onClick={onClick}
-      className="grid h-9 w-9 place-items-center rounded-full border bg-card text-forest disabled:opacity-40"
-    >
-      {children}
-    </button>
   );
 }

@@ -10,11 +10,17 @@ import { CategorySection } from "@/components/CategorySection";
 import { CatalogError, CatalogLoading } from "@/components/CatalogStatus";
 import { ReserveDialog } from "@/components/ReserveDialog";
 import { ChangeNotice } from "@/components/ChangeNotice";
+import { AttendanceSection } from "@/components/AttendanceSection";
+import { AttendanceDialog } from "@/components/AttendanceDialog";
+import { useMyAttendance } from "@/hooks/useMyAttendance";
+import { ATTENDANCE_ENABLED } from "@/lib/attendance";
 
 export default function App() {
   const { state, retry, refresh, updateGift } = useCatalog();
   const { myGifts, add } = useMyGifts();
   const [choosing, setChoosing] = useState<Gift | null>(null);
+  const [attendanceOpen, setAttendanceOpen] = useState(false);
+  const { confirmation, save: saveConfirmation } = useMyAttendance();
 
   return (
     <div className="min-h-screen">
@@ -33,6 +39,8 @@ export default function App() {
           </>
         )}
 
+        {ATTENDANCE_ENABLED && <AttendanceSection confirmed={confirmation} onOpen={() => setAttendanceOpen(true)} />}
+
         <ChangeNotice whatsappUrl={eventInfo.whatsappUrl} />
       </main>
 
@@ -45,6 +53,15 @@ export default function App() {
         }}
         onConflict={refresh}
       />
+
+      {ATTENDANCE_ENABLED && (
+        <AttendanceDialog
+          open={attendanceOpen}
+          current={confirmation}
+          onClose={() => setAttendanceOpen(false)}
+          onSaved={saveConfirmation}
+        />
+      )}
     </div>
   );
 }
