@@ -21,7 +21,7 @@ export function ContributionCard({ contribution }: { contribution: Contribution 
         disabled
         className="mt-4 w-full rounded-full border border-gold py-3 text-sm font-bold text-accent-foreground"
       >
-        Ver cómo aportar · próximamente
+        Depositar de forma fisica en el cofre o a la llave @SMO488
       </button>
     </article>
   );
