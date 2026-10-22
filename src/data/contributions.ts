@@ -7,9 +7,9 @@ import type { Contribution } from "@/types/gift";
 export const contributions: Record<string, Contribution> = {
   especiales: {
     id: "aporte",
-    name: "Aporte para gastos de Lian",
+    name: "Lluvia de sobres para Lian",
     variant: "Monto libre",
-    description: "Aporte voluntario para gastos del bebé; sin monto obligatorio.",
+    description: "Un aporte voluntario con el monto que desees.",
     available: true,
   },
 };
