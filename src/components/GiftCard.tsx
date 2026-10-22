@@ -13,6 +13,9 @@ interface Props {
 
 export function GiftCard({ gift, mine, onChoose }: Props) {
   const available = isAvailable(gift);
+  // El recuerdo local no se entera de cancelaciones hechas por admin:
+  // nunca puede superar lo que el regalo tiene seleccionado de verdad.
+  const myQty = Math.min(mine, gift.selected);
   return (
     <article className={`rounded-2xl border bg-card p-5 shadow-soft ${available ? "" : "opacity-70"}`}>
       <div className="flex items-start justify-between gap-3">
@@ -28,10 +31,10 @@ export function GiftCard({ gift, mine, onChoose }: Props) {
       </div>
       <p className="mt-3 text-sm text-muted-foreground">{gift.description}</p>
       <QuantityStats required={gift.required} selected={gift.selected} available={availableQty(gift)} />
-      {mine > 0 && (
+      {myQty > 0 && (
         <p className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
           <Check className="h-4 w-4" aria-hidden />
-          Elegiste {mine > 1 ? `${mine} unidades` : "este regalo"}
+          Elegiste {myQty > 1 ? `${myQty} unidades` : "este regalo"}
         </p>
       )}
       <button
