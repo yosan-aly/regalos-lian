@@ -11,11 +11,11 @@ interface Props {
 
 export function AttendanceSection({ confirmed, deadline, onOpen }: Props) {
   return (
-    <section id="asistencia" className="mt-12 scroll-mt-20 rounded-3xl border bg-card p-6 text-center shadow-soft">
+    <section id="asistencia" className="mt-4 scroll-mt-20 rounded-3xl border bg-card p-6 text-center shadow-soft">
       <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-secondary text-forest">
         <CalendarCheck className="h-6 w-6" aria-hidden />
       </div>
-      <h2 className="mt-3 font-display text-2xl font-semibold text-forest">¿Nos acompañas?</h2>
+      <h2 className="mt-3 font-display text-2xl font-semibold text-forest">Confirmar asistencia</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         Confírmanos tu asistencia para preparar todo con mucho cariño.
       </p>

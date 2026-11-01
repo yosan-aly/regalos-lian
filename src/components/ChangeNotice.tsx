@@ -3,7 +3,7 @@ import { MessageCircle } from "lucide-react";
 /** Aviso final: enlace a WhatsApp para cambiar o cancelar una elección. */
 export function ChangeNotice({ whatsappUrl }: { whatsappUrl: string }) {
   return (
-    <section className="mt-12 rounded-3xl bg-forest p-6 text-center text-primary-foreground shadow-soft">
+    <section className="mt-4 rounded-3xl bg-forest p-6 text-center text-primary-foreground shadow-soft">
       <p className="leading-relaxed">
         ¿Necesitas cambiar o cancelar tu elección? Escríbenos por WhatsApp para que podamos actualizar la
         disponibilidad de la lista.

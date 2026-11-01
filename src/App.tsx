@@ -28,6 +28,12 @@ export default function App() {
       <main className="mx-auto max-w-xl px-4 pb-16">
         <IntroCard info={eventInfo} />
 
+        {ATTENDANCE_ENABLED && <AttendanceSection
+            confirmed={confirmation}
+            deadline={eventInfo.attendanceDeadline}
+            onOpen={() => setAttendanceOpen(true)}
+        />}
+
         {state.status === "loading" && <CatalogLoading />}
         {state.status === "error" && <CatalogError message={state.message} onRetry={retry} />}
         {state.status === "ready" && (
@@ -38,12 +44,6 @@ export default function App() {
             ))}
           </>
         )}
-
-        {ATTENDANCE_ENABLED && <AttendanceSection
-            confirmed={confirmation}
-            deadline={eventInfo.attendanceDeadline}
-            onOpen={() => setAttendanceOpen(true)}
-          />}
 
         <ChangeNotice whatsappUrl={eventInfo.whatsappUrl} />
       </main>
