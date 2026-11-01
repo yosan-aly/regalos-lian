@@ -86,3 +86,22 @@ export function updateAttendanceConfirmation(
     body: JSON.stringify({ name, attendees }),
   });
 }
+
+export interface ConfirmationSummaryItem extends AttendanceConfirmation {
+  createdAt: string;
+}
+
+/** Resumen de confirmaciones de asistencia (solo lectura). */
+export interface ConfirmationSummary {
+  confirmations: ConfirmationSummaryItem[];
+  totalConfirmations: number;
+  totalAttendees: number;
+}
+
+/** Requiere el código de consulta (o el token de admin). */
+export function getAttendanceSummary(code: string, signal?: AbortSignal): Promise<ConfirmationSummary> {
+  return request<ConfirmationSummary>("/attendance-confirmations/summary", {
+    headers: { "X-Admin-Token": code },
+    signal,
+  });
+}

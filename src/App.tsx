@@ -12,6 +12,7 @@ import { ReserveDialog } from "@/components/ReserveDialog";
 import { ChangeNotice } from "@/components/ChangeNotice";
 import { AttendanceSection } from "@/components/AttendanceSection";
 import { AttendanceDialog } from "@/components/AttendanceDialog";
+import { GuestsDialog } from "@/components/GuestsDialog";
 import { useMyAttendance } from "@/hooks/useMyAttendance";
 import { ATTENDANCE_ENABLED } from "@/lib/attendance";
 
@@ -20,6 +21,7 @@ export default function App() {
   const { myGifts, add } = useMyGifts();
   const [choosing, setChoosing] = useState<Gift | null>(null);
   const [attendanceOpen, setAttendanceOpen] = useState(false);
+  const [guestsOpen, setGuestsOpen] = useState(false);
   const { confirmation, save: saveConfirmation } = useMyAttendance();
 
   return (
@@ -28,11 +30,14 @@ export default function App() {
       <main className="mx-auto max-w-xl px-4 pb-16">
         <IntroCard info={eventInfo} />
 
-        {ATTENDANCE_ENABLED && <AttendanceSection
+        {ATTENDANCE_ENABLED && (
+          <AttendanceSection
             confirmed={confirmation}
             deadline={eventInfo.attendanceDeadline}
             onOpen={() => setAttendanceOpen(true)}
-        />}
+            onSecret={() => setGuestsOpen(true)}
+          />
+        )}
 
         {state.status === "loading" && <CatalogLoading />}
         {state.status === "error" && <CatalogError message={state.message} onRetry={retry} />}
@@ -67,6 +72,8 @@ export default function App() {
           onSaved={saveConfirmation}
         />
       )}
+
+      {ATTENDANCE_ENABLED && <GuestsDialog open={guestsOpen} onClose={() => setGuestsOpen(false)} />}
     </div>
   );
 }
